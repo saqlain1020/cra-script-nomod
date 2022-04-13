@@ -1,5 +1,5 @@
 # cra-script-nomod
-This package is monorepo of react-scripts@5.0.0
+This package is monorepo of react-scripts@5.0.1
 ##### It will create react app using given template without copying over `node_modules`, `package.json`, `package-lock.json`, `yarn.lock`, `.env.development` and `.env` from template folder.
 
 ---
