@@ -256,7 +256,7 @@ module.exports = function (
     fs.copySync(templateDir, appPath, {
       filter: (path) => {
         path = path.toString()
-        let words = ["node_modules", "package.json", "package-lock.json", "yarn.lock", ".env", ".env.development"]
+        let words = ["node_modules", "package.json", "package-lock.json", "yarn.lock", ".env", ".env.development", "README.md"]
         const isPath = words.some((item) =>
           path.slice(path.length - item.length) === item
         )
