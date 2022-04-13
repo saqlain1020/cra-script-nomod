@@ -132,7 +132,7 @@ module.exports = function (
     console.log(
       chalk.red(
         'Root-level `dependencies` and `scripts` keys in `template.json` were deprecated for Create React App 5.\n' +
-          'This template needs to be updated to use the new `package` key.'
+        'This template needs to be updated to use the new `package` key.'
       )
     );
     console.log('For more information, visit https://cra.link/templates');
@@ -232,7 +232,17 @@ module.exports = function (
   // Copy the files for the user
   const templateDir = path.join(templatePath, 'template');
   if (fs.existsSync(templateDir)) {
-    fs.copySync(templateDir, appPath);
+    // fs.copySync(templateDir, appPath);
+    fs.copySync(templateDir, appPath, {
+      filter: (path) => {
+        path = path.toString()
+        let words = ["node_modules", "package.json", "package-lock.json", "yarn.lock", ".env", ".env.development"]
+        const isPath = words.some((item) =>
+          path.slice(path.length - item.length) === item
+        )
+        return !isPath;
+      }
+    });
   } else {
     console.error(
       `Could not locate supplied template: ${chalk.green(templateDir)}`
