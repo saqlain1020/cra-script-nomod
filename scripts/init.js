@@ -229,6 +229,26 @@ module.exports = function (
     );
   }
 
+  // Copy .env from template.json
+  let templateEnv = "";
+  Object.entries(templateJson.env || {}).forEach(([key, value]) => {
+    templateEnv += `${key}=${value}\n`;
+  })
+  fs.writeFileSync(
+    path.join(appPath, '.env'),
+    templateEnv
+  );
+
+  // Copy .env from template.json
+  let templateDevelopmentEnv = "";
+  Object.entries(templateJson.envDevelopment || {}).forEach(([key, value]) => {
+    templateDevelopmentEnv += `${key} = ${value}\n`;
+  })
+  fs.writeFileSync(
+    path.join(appPath, '.env.development'),
+    templateDevelopmentEnv
+  );
+
   // Copy the files for the user
   const templateDir = path.join(templatePath, 'template');
   if (fs.existsSync(templateDir)) {
