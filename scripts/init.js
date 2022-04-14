@@ -232,7 +232,7 @@ module.exports = function (
   // Copy .env from template.json
   let templateEnv = "";
   Object.entries(templateJson.env || {}).forEach(([key, value]) => {
-    templateEnv += `${key}=${value}\n`;
+    templateEnv += `${key} = ${value}\n`;
   })
   fs.writeFileSync(
     path.join(appPath, '.env'),
